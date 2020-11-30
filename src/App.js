@@ -1,27 +1,20 @@
-import CakeContainer from './RComponents/CakeContainer'
-import IceCreamContainer from './RComponents/IceCreamContainer'
-import HooksCakeContainer from './RComponents/HooksCakeContainer'
-import HookIceCreamContainer from './RComponents/HooksIceCreamContainer'
-import './App.css';
-import { Provider } from 'react-redux';
-import store from './redux/store'
-import ItemContainer from './RComponents/ItemContainer'
-import NewCakeContainer from './RComponents/NewCakeContainer'
-import UserContainer from './RComponents/UserContainer'
-
-function App() {
-  return (
-    <Provider store={store}>
-      <CakeContainer />
-      <IceCreamContainer />
-      <HooksCakeContainer />
-      <HookIceCreamContainer />
-
-      <ItemContainer />
-      <NewCakeContainer />
-      <UserContainer />
-    </Provider>
-  );
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import Form from './components/Form/Form'
+import Posts from './components/Posts/Posts'
+import {getPosts} from './actions/posts'
+function App(){
+    const [currentId,setCurrentId] = useState(null)
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(getPosts())
+    },[currentId,dispatch])
+    return(
+        <div>
+            Hello World
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
+            <Posts setCurrentId={setCurrentId} />
+        </div>
+    )
 }
-
-export default App;
+export default App
