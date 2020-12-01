@@ -8,7 +8,7 @@ function Form({currentId,setCurrentId}){
     const dispatch = useDispatch()
     const [postData,setPostData] = useState({
         name: '',
-        price:0,
+        price:'',
         flavor: '' 
     })
     // for geting the data to update operation for currentID
@@ -27,11 +27,6 @@ function Form({currentId,setCurrentId}){
     }
     const clear = () => {
         setCurrentId(null)
-        setPostData({
-            name: '',
-        price:0,
-        flavor: '' 
-        })
     }
     return(
         <div>
@@ -54,11 +49,6 @@ function Form({currentId,setCurrentId}){
                 type="submit"
                 >
                     submit
-                </button>
-                <button
-                onClick={clear}
-                >
-                    Clear
                 </button>
             </form>
         </div>
